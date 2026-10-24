@@ -72,6 +72,14 @@ function main() {
   }
   writeCsv(args.output, OUTPUT_HEADER, out);
   console.error(`wrote ${out.length} rows to ${path.relative(ROOT, args.output) || args.output}: ${JSON.stringify(counts)}`);
+  // Record the run for usage_report.md (the pipeline itself makes no model calls).
+  if (path.resolve(args.output) === path.join(ROOT, 'output.csv')) {
+    fs.writeFileSync(path.join(__dirname, 'cache', 'last_run.json'), JSON.stringify({
+      at: new Date().toISOString(), requests: out.length, statuses: counts, llm_calls: 0,
+      extracted_files: fs.readdirSync(path.join(__dirname, 'cache', 'extracted')).length,
+      missing_extractions: skipped,
+    }, null, 2) + '\n');
+  }
 }
 
 main();

@@ -159,3 +159,23 @@ Remaining misses, by cause:
 - **Identifier-free analytics in shared windows** (7 rows: cases 03, 04, 21, 25, 26, 27, 28): left out, as agreed.
 - **Accounts in shared windows** (004, 008, 410, 5482, 7012): left out.
 - **Audit records with no participant-visible trace** (`audit_record_6645`, `audit_record_5569`, cases 18/20): they appear in no evidence file, activity row or image. Unrecoverable.
+
+## 12. Image/PDF extraction — `code/extract/run.js`
+
+```
+node --no-warnings code/extract/run.js --pdf-only   # PDFs only, no API
+node --no-warnings code/extract/run.js              # + images (needs GEMINI_API_KEY in .env)
+node code/evaluation/usage.js                       # -> code/evaluation/usage_report.md
+```
+
+- **PDFs (4):** decoded locally with `pdfjs-dist@6.4.299` (`code/extract/pdfText.js` rebuilds visual lines). Facts are parsed with rules and use no tokens.
+  - evidence_58 → `support_001` attachment containing Priya Raman's name, email and phone (fixes case_07).
+  - evidence_55 → `audit_record_003` (user_03, retained until 2027-08-25).
+  - evidence_18 → `export_1842`, linked through the catalog label `NST-2026-0718-1842` (activity_4009).
+  - evidence_27 (legal register) names orders but no resource IDs, and those orders appear nowhere else. They are kept as `unlinked_rows` context only, never turned into invented `legal_hold_*` IDs. A first version wrongly matched catalog label `(user_17)` → `tombstone_17`; bare user IDs are now excluded as labels.
+- **Images (11):** one **Gemini** vision call per image through `@google/genai@2.28.0`. The model is `GEMINI_MODEL` (default `gemini-2.5-flash`), with JSON output constrained by `responseJsonSchema: IMAGE_SCHEMA`. Results are cached in `code/cache/extracted/<file_id>.json` and never re-sent unless `--force` is passed. Each call's `usageMetadata` is appended to `code/cache/usage.jsonl` (prompt tokens; candidate + thinking tokens as output; cached tokens). A non-`STOP` finish reason is treated as an error, so a truncated or blocked answer is never cached. *(This first used Claude; switched to Gemini at the user's request.)*
+- **Secrets:** `dotenv@18.0.7` loads the repo-root `.env`, which is git-ignored. `.env.example` lists `GEMINI_API_KEY` and `GEMINI_MODEL` with no values. The key is never logged or written to the cache.
+- **Usage report:** `code/main.js` writes `code/cache/last_run.json` when it produces `./output.csv` (the pipeline makes 0 model calls). `usage.js` combines that with the ledger: per-model and overall calls, tokens, and cost per request. Prices are in `code/lib/pricing.js` (Gemini paid tier, checked 2026-10-25; `gemini-2.5-flash` = $0.30 input / $2.50 output per MTok). Versioned model names returned by the API are matched to their base ID.
+- **Status:** PDFs are done. Images are **not run**; the user will run `npm run extract` with their own key.
+
+Sample score with PDF facts: **status 100%**, step P/R/F1 **100% / 92.7% / 96.2%**, field 92.7%, sequence 62.5%. Full run: 518 rows (161 COMPLETE / 347 INCOMPLETE / 10 NOT_APPLICABLE). Eval cases 45, 61 and 63 still need the image facts.

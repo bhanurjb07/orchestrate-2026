@@ -31,6 +31,7 @@ function categoryOf(resourceId, obs) {
     case 'tombstone': return 'ACCOUNT_TOMBSTONE';
     case 'email_delivery': return 'EMAIL_DELIVERY_LOG';
     case 'telemetry': return 'PRODUCT_TELEMETRY';
+    case 'object': return 'SUPPORT_ATTACHMENT';   // stored attachment files (object storage)
     case 'analytics':
       return has(/contact_lookup|MARKETING/) || obs.some(o => 'email_opt_in' in o.fields) ? 'MARKETING_PROFILE' : 'ANALYTICS_PROFILE';
     case 'support':
@@ -66,6 +67,7 @@ function factsOf(o, category) {
     return r;
   }
   if (o.source === 'activity') return o.facts;
+  if (o.source === 'extracted' && typeof f.present === 'boolean' && !f.present) return { present: false, identifiable: null, active: null };
   if ('status_code' in f) r.present = f.status_code === 200 && f.profile != null;
   else if ('http_status' in f) r.present = String(f.http_status) === '200';
   else if ('rows' in f) r.present = Number(f.rows) > 0;

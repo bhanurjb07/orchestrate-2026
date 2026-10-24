@@ -127,3 +127,51 @@ branch=main
 repo_root=D:\orchestrate-2026
 worktree=main
 parent_agent=none
+
+## [2026-10-25T03:43:27+05:30] PDF text decoding, image vision extractor with cache and usage report
+
+User Prompt (verbatim, secrets redacted):
+For the PDFs, decode the text with a pdf library first.for the 11 image use an LLM vision call once per image, save the result in a cache file, and count the tokens for usage_report.md.For the PDFs, decode the text with a PDF library first. For the 11 images, use an LLM vision call once per image, save the results in a cache file, and count the tokens for usage_report.md.
+
+Agent Response Summary:
+Installed pdfjs-dist@6.4.299 and @anthropic-ai/sdk@1.3.0 (pinned). Decoded all four PDFs locally and parsed them into cached facts with rules: support_001 attachment, audit_record_003, and export_1842 via a catalog label. A false catalog match (bare user id label -> tombstone_17) was found and fixed; the legal register's orders are kept as unlinked context rather than invented ids. Built the image extractor: one claude-opus-5-5 vision call per image with a JSON schema and refusal fallback, cached per file, with usage appended to a ledger. Also built a usage_report.md generator and per-run stats in main.js. Samples now score 100% status and 96.2% step F1. The image calls were not run because no ANTHROPIC_API_KEY is set in the environment.
+
+Actions:
+* npm install --save-exact pdfjs-dist@6.4.299 @anthropic-ai/sdk@1.3.0
+* Created code/extract/pdfText.js, code/extract/run.js, code/evaluation/usage.js, code/lib/pricing.js
+* Edited code/lib/audit.js (extracted 'present' flag, object_* attachments), code/main.js (last_run.json), package.json (scripts)
+* Ran extract --pdf-only (4 cached files), full pipeline (518 rows), usage report generator
+* Updated code/NOTES.md (section 12)
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=main
+repo_root=D:\orchestrate-2026
+worktree=main
+parent_agent=none
+
+## [2026-10-25T03:51:50+05:30] Switch image extractor to Gemini API with dotenv-managed key
+
+User Prompt (verbatim, secrets redacted):
+1. switch the image extractor from claude to the gemini API and install dotenv use .env file store and use api keys.
+
+Don't run the extraction. I'll run it myself with my key.
+
+Agent Response Summary:
+Replaced the Anthropic SDK with @google/genai@2.28.0 and added dotenv@18.0.7 (both pinned, at least two weeks old). The image extractor now makes one Gemini generateContent call per image with responseJsonSchema and the default model gemini-2.5-flash (overridable via GEMINI_MODEL). It records usageMetadata (thinking tokens counted as output) to the usage ledger and refuses to cache non-STOP results. Added .env.example (no values) and added .env to .gitignore. Updated pricing to Gemini paid-tier rates checked on the official pricing page. As requested, the image extraction was not run; only syntax checks and the no-network PDF path were exercised.
+
+Actions:
+* npm uninstall @anthropic-ai/sdk; npm install --save-exact @google/genai@2.28.0 dotenv@18.0.7
+* Edited code/extract/run.js, code/lib/pricing.js, code/evaluation/usage.js, code/NOTES.md
+* Created .env.example; appended .env to .gitignore
+* WebFetch ai.google.dev/gemini-api/docs/pricing for model ids and prices
+* Ran node --check, extract --pdf-only (cached, no API calls), usage report generator
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=main
+repo_root=D:\orchestrate-2026
+worktree=main
+parent_agent=none

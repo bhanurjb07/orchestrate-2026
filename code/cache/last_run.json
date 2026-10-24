@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-24T22:12:58.064Z",
+  "requests": 518,
+  "statuses": {
+    "INCOMPLETE": 347,
+    "COMPLETE": 161,
+    "NOT_APPLICABLE": 10
+  },
+  "llm_calls": 0,
+  "extracted_files": 4,
+  "missing_extractions": [
+    "evidence_04",
+    "evidence_09",
+    "evidence_14",
+    "evidence_19",
+    "evidence_23",
+    "evidence_28",
+    "evidence_32",
+    "evidence_37",
+    "evidence_42",
+    "evidence_46",
+    "evidence_60"
+  ]
+}

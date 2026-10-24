@@ -25,7 +25,7 @@ const { OUTPUT_HEADER, isStep, validate } = require('../lib/contract');
 const ROOT = path.resolve(__dirname, '..', '..');
 
 function parseArgs(argv) {
-  const a = { pred: path.join(ROOT, 'output.csv'), gold: path.join(ROOT, 'dataset', 'sample_output.csv'), verbose: false, report: null };
+  const a = { pred: path.join(ROOT, 'sample_pred.csv'), gold: path.join(ROOT, 'dataset', 'sample_output.csv'), verbose: false, report: null };
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i];
     if (k === '--verbose') a.verbose = true;

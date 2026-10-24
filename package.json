@@ -4,7 +4,7 @@
   "private": true,
   "description": "Deletion-audit agent for the HackerRank Orchestrate challenge",
   "engines": {
-    "node": ">=22.5"
+    "node": ">=22.13"
   },
   "scripts": {
     "start": "node --no-warnings code/main.js",

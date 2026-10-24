@@ -1,0 +1,125 @@
+{
+  "file_id": "evidence_14",
+  "method": "vision",
+  "model": "gemini-3.1-flash-lite",
+  "source": "evidence/images/connector_management_console_20260807.png",
+  "captured_at": "2026-08-07T08:00:00Z",
+  "screen": "BridgeOps - Connections",
+  "records": [
+    {
+      "resource_id": "data_flow_1121",
+      "system_id": "integration_service",
+      "collection": "data_flow",
+      "observed_at": "2026-08-07T08:00:00Z",
+      "present": true,
+      "status_text": "Healthy",
+      "full_name": null,
+      "email": "jain.aditi@gmail.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "customer_analytics_warehouse",
+        "Continuous sync",
+        "200 OK"
+      ],
+      "enabled": true
+    },
+    {
+      "resource_id": "data_flow_9846",
+      "system_id": "integration_service",
+      "collection": "data_flow",
+      "observed_at": "2026-08-07T08:00:00Z",
+      "present": true,
+      "status_text": "",
+      "full_name": null,
+      "email": "lucia-torres@gmail.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "customer_analytics_warehouse",
+        "Continuous"
+      ],
+      "enabled": true
+    }
+  ],
+  "raw": {
+    "screen": "BridgeOps - Connections",
+    "records": [
+      {
+        "resource_id": "data_flow_1121",
+        "record_kind": "data_flow",
+        "present": true,
+        "flow_or_restore": "enabled",
+        "status_text": "Healthy",
+        "names": [],
+        "emails": [
+          "jain.aditi@gmail.com"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "customer_analytics_warehouse",
+          "Continuous sync",
+          "200 OK"
+        ]
+      },
+      {
+        "resource_id": "data_flow_9846",
+        "record_kind": "data_flow",
+        "present": true,
+        "flow_or_restore": "enabled",
+        "status_text": "",
+        "names": [],
+        "emails": [
+          "lucia-torres@gmail.com"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "customer_analytics_warehouse",
+          "Continuous"
+        ]
+      },
+      {
+        "resource_id": "",
+        "record_kind": "data_flow",
+        "present": true,
+        "flow_or_restore": "enabled",
+        "status_text": "",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "Order notifications",
+          "notification_service",
+          "order events",
+          "Continuous"
+        ]
+      },
+      {
+        "resource_id": "",
+        "record_kind": "data_flow",
+        "present": true,
+        "flow_or_restore": "enabled",
+        "status_text": "",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "Delivery tracking",
+          "logistics_warehouse",
+          "shipment events",
+          "Continuous"
+        ]
+      }
+    ]
+  }
+}

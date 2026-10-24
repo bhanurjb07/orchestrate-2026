@@ -1,0 +1,52 @@
+{
+  "file_id": "evidence_60",
+  "method": "vision",
+  "model": "gemini-3.1-flash-lite",
+  "source": "evidence/images/marketing_profile_console.png",
+  "captured_at": "2026-09-16T07:20:00Z",
+  "screen": "Audience Operations",
+  "records": [
+    {
+      "resource_id": "marketing_001",
+      "system_id": "marketing_platform",
+      "collection": "marketing_profiles",
+      "observed_at": "2026-09-16T07:20:00Z",
+      "present": true,
+      "status_text": "Live",
+      "full_name": "Soo-jin Park",
+      "email": "sj.park@naver.com",
+      "phone": "+82 10-5837-9451",
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "15 Sep 2026 23:40 UTC"
+      ]
+    }
+  ],
+  "raw": {
+    "screen": "Audience Operations",
+    "records": [
+      {
+        "resource_id": "marketing_001",
+        "record_kind": "marketing_profile",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Live",
+        "names": [
+          "Soo-jin Park"
+        ],
+        "emails": [
+          "sj.park@naver.com"
+        ],
+        "phones": [
+          "+82 10-5837-9451"
+        ],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "15 Sep 2026 23:40 UTC"
+        ]
+      }
+    ]
+  }
+}

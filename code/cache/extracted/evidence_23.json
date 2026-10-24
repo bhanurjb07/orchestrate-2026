@@ -1,0 +1,167 @@
+{
+  "file_id": "evidence_23",
+  "method": "vision",
+  "model": "gemini-3.1-flash-lite",
+  "source": "evidence/images/customer_export_console_20260618.png",
+  "captured_at": "2026-06-18T12:00:00Z",
+  "screen": "Data exports",
+  "records": [
+    {
+      "resource_id": "export_1261",
+      "system_id": "export_service",
+      "collection": "export_file",
+      "observed_at": "2026-06-18T12:00:00Z",
+      "present": true,
+      "status_text": "Collecting",
+      "full_name": null,
+      "email": "marcus.lee@northstar.shop",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "customer_export_1261.zip",
+        "20 Jun 14:18 UTC"
+      ]
+    },
+    {
+      "resource_id": "export_1260",
+      "system_id": "export_service",
+      "collection": "export_file",
+      "observed_at": "2026-06-18T12:00:00Z",
+      "present": true,
+      "status_text": "Ready",
+      "full_name": null,
+      "email": "ingrid.dahl@outlook.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "customer_export_1260.zip",
+        "18 Jun 06:42 UTC",
+        "18 Jun 2026 06:42 UTC",
+        "25 Jun 2026 06:42 UTC",
+        "18.4 MB",
+        "SHA-256 - 41ca09...",
+        "0",
+        "Profile · Orders · Saved addresses"
+      ]
+    },
+    {
+      "resource_id": "export_1259",
+      "system_id": "export_service",
+      "collection": "export_file",
+      "observed_at": "2026-06-18T12:00:00Z",
+      "present": true,
+      "status_text": "Packaging",
+      "full_name": null,
+      "email": "sara.kim@northstar.shop",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "customer_export_1259.zip",
+        "17 Jun 11:03 UTC"
+      ]
+    },
+    {
+      "resource_id": "export_1258",
+      "system_id": "export_service",
+      "collection": "export_file",
+      "observed_at": "2026-06-18T12:00:00Z",
+      "present": true,
+      "status_text": "Ready",
+      "full_name": null,
+      "email": "daniel.park@northstar.shop",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "customer_export_1258.zip",
+        "16 Jun 09:27 UTC"
+      ]
+    }
+  ],
+  "raw": {
+    "screen": "Data exports",
+    "records": [
+      {
+        "resource_id": "export_1261",
+        "record_kind": "export_file",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Collecting",
+        "names": [],
+        "emails": [
+          "marcus.lee@northstar.shop"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "customer_export_1261.zip",
+          "20 Jun 14:18 UTC"
+        ]
+      },
+      {
+        "resource_id": "export_1260",
+        "record_kind": "export_file",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Ready",
+        "names": [],
+        "emails": [
+          "ingrid.dahl@outlook.com"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "customer_export_1260.zip",
+          "18 Jun 06:42 UTC",
+          "18 Jun 2026 06:42 UTC",
+          "25 Jun 2026 06:42 UTC",
+          "18.4 MB",
+          "SHA-256 - 41ca09...",
+          "0",
+          "Profile · Orders · Saved addresses"
+        ]
+      },
+      {
+        "resource_id": "export_1259",
+        "record_kind": "export_file",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Packaging",
+        "names": [],
+        "emails": [
+          "sara.kim@northstar.shop"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "customer_export_1259.zip",
+          "17 Jun 11:03 UTC"
+        ]
+      },
+      {
+        "resource_id": "export_1258",
+        "record_kind": "export_file",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Ready",
+        "names": [],
+        "emails": [
+          "daniel.park@northstar.shop"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "customer_export_1258.zip",
+          "16 Jun 09:27 UTC"
+        ]
+      }
+    ]
+  }
+}

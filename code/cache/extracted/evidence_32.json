@@ -1,0 +1,185 @@
+{
+  "file_id": "evidence_32",
+  "method": "vision",
+  "model": "gemini-3.1-flash-lite",
+  "source": "evidence/images/backup_restore_console_20260429.png",
+  "captured_at": "2026-04-29T09:00:00Z",
+  "screen": "Vault Recovery Manager",
+  "records": [
+    {
+      "resource_id": "backup_9291",
+      "system_id": "backup_service",
+      "collection": "backup_archive",
+      "observed_at": "2026-04-29T09:00:00Z",
+      "present": true,
+      "status_text": "Archive",
+      "full_name": null,
+      "email": "bluepeakco@outlook.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "ap-southeast-1",
+        "26 Apr 02:00",
+        "102.3 GB",
+        "AES-256"
+      ],
+      "restore_allowed": true
+    },
+    {
+      "resource_id": "backup_9288",
+      "system_id": "backup_service",
+      "collection": "backup_archive",
+      "observed_at": "2026-04-29T09:00:00Z",
+      "present": true,
+      "status_text": "Archive",
+      "full_name": null,
+      "email": "miller.logistics@company.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "us-west-2",
+        "26 Apr 02:00",
+        "67.1 GB",
+        "AES-256"
+      ],
+      "restore_allowed": true
+    },
+    {
+      "resource_id": "backup_9287",
+      "system_id": "backup_service",
+      "collection": "backup_archive",
+      "observed_at": "2026-04-29T09:00:00Z",
+      "present": true,
+      "status_text": "Archive",
+      "full_name": null,
+      "email": "areed1433@gmail.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "eu-west-1",
+        "26 Apr 02:00",
+        "84.7 GB",
+        "AES-256",
+        "s3://northstar-backups/customer-platform/weekly/segment-42-20260426.tar.zst",
+        "26 Apr 2026 02:00 UTC",
+        "Verified",
+        "29 Mar 2026",
+        "26 Jul 2026"
+      ],
+      "restore_allowed": true
+    },
+    {
+      "resource_id": "backup_9286",
+      "system_id": "backup_service",
+      "collection": "backup_archive",
+      "observed_at": "2026-04-29T09:00:00Z",
+      "present": true,
+      "status_text": "Archive",
+      "full_name": null,
+      "email": "summit-retail@company.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "us-east-1",
+        "26 Apr 02:00",
+        "91.4 GB",
+        "AES-256"
+      ],
+      "restore_allowed": true
+    }
+  ],
+  "raw": {
+    "screen": "Vault Recovery Manager",
+    "records": [
+      {
+        "resource_id": "backup_9291",
+        "record_kind": "backup_archive",
+        "present": true,
+        "flow_or_restore": "restorable",
+        "status_text": "Archive",
+        "names": [],
+        "emails": [
+          "bluepeakco@outlook.com"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "ap-southeast-1",
+          "26 Apr 02:00",
+          "102.3 GB",
+          "AES-256"
+        ]
+      },
+      {
+        "resource_id": "backup_9288",
+        "record_kind": "backup_archive",
+        "present": true,
+        "flow_or_restore": "restorable",
+        "status_text": "Archive",
+        "names": [],
+        "emails": [
+          "miller.logistics@company.com"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "us-west-2",
+          "26 Apr 02:00",
+          "67.1 GB",
+          "AES-256"
+        ]
+      },
+      {
+        "resource_id": "backup_9287",
+        "record_kind": "backup_archive",
+        "present": true,
+        "flow_or_restore": "restorable",
+        "status_text": "Archive",
+        "names": [],
+        "emails": [
+          "areed1433@gmail.com"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "eu-west-1",
+          "26 Apr 02:00",
+          "84.7 GB",
+          "AES-256",
+          "s3://northstar-backups/customer-platform/weekly/segment-42-20260426.tar.zst",
+          "26 Apr 2026 02:00 UTC",
+          "Verified",
+          "29 Mar 2026",
+          "26 Jul 2026"
+        ]
+      },
+      {
+        "resource_id": "backup_9286",
+        "record_kind": "backup_archive",
+        "present": true,
+        "flow_or_restore": "restorable",
+        "status_text": "Archive",
+        "names": [],
+        "emails": [
+          "summit-retail@company.com"
+        ],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "us-east-1",
+          "26 Apr 02:00",
+          "91.4 GB",
+          "AES-256"
+        ]
+      }
+    ]
+  }
+}

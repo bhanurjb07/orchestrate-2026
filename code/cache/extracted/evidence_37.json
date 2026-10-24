@@ -1,0 +1,219 @@
+{
+  "file_id": "evidence_37",
+  "method": "vision",
+  "model": "gemini-3.1-flash-lite",
+  "source": "evidence/images/security_audit_explorer_20260905.png",
+  "captured_at": "2026-09-05T07:00:00Z",
+  "screen": "Account events",
+  "records": [
+    {
+      "resource_id": "audit_record_003",
+      "system_id": "security_service",
+      "collection": "security_audit_record",
+      "observed_at": "2026-09-05T07:00:00Z",
+      "present": true,
+      "status_text": "Valid",
+      "full_name": null,
+      "email": null,
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": "user_03",
+      "other_references": [
+        "account_closure_recorded",
+        "2026-08-25T04:03:00Z",
+        "8f0c...31ad",
+        "2026-Q3"
+      ]
+    },
+    {
+      "resource_id": "audit_record_002",
+      "system_id": "security_service",
+      "collection": "security_audit_record",
+      "observed_at": "2026-09-05T07:00:00Z",
+      "present": true,
+      "status_text": "Valid",
+      "full_name": null,
+      "email": null,
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": "user_03",
+      "other_references": [
+        "Session revoked"
+      ]
+    },
+    {
+      "resource_id": "audit_record_001",
+      "system_id": "security_service",
+      "collection": "security_audit_record",
+      "observed_at": "2026-09-05T07:00:00Z",
+      "present": true,
+      "status_text": "Valid",
+      "full_name": null,
+      "email": null,
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": "user_03",
+      "other_references": [
+        "Recovery challenge completed"
+      ]
+    },
+    {
+      "resource_id": "audit_record_006",
+      "system_id": "security_service",
+      "collection": "security_audit_record",
+      "observed_at": "2026-09-05T07:00:00Z",
+      "present": true,
+      "status_text": "Valid",
+      "full_name": null,
+      "email": null,
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": "user_03",
+      "other_references": [
+        "Email change confirmed"
+      ]
+    },
+    {
+      "resource_id": "audit_record_005",
+      "system_id": "security_service",
+      "collection": "security_audit_record",
+      "observed_at": "2026-09-05T07:00:00Z",
+      "present": true,
+      "status_text": "Valid",
+      "full_name": null,
+      "email": null,
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": "user_03",
+      "other_references": [
+        "Login from new device"
+      ]
+    },
+    {
+      "resource_id": "audit_record_004",
+      "system_id": "security_service",
+      "collection": "security_audit_record",
+      "observed_at": "2026-09-05T07:00:00Z",
+      "present": true,
+      "status_text": "Valid",
+      "full_name": null,
+      "email": null,
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": "user_03",
+      "other_references": [
+        "Password changed"
+      ]
+    }
+  ],
+  "raw": {
+    "screen": "Account events",
+    "records": [
+      {
+        "resource_id": "audit_record_003",
+        "record_kind": "security_audit_record",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Valid",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [
+          "user_03"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "account_closure_recorded",
+          "2026-08-25T04:03:00Z",
+          "8f0c...31ad",
+          "2026-Q3"
+        ]
+      },
+      {
+        "resource_id": "audit_record_002",
+        "record_kind": "security_audit_record",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Valid",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [
+          "user_03"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "Session revoked"
+        ]
+      },
+      {
+        "resource_id": "audit_record_001",
+        "record_kind": "security_audit_record",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Valid",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [
+          "user_03"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "Recovery challenge completed"
+        ]
+      },
+      {
+        "resource_id": "audit_record_006",
+        "record_kind": "security_audit_record",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Valid",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [
+          "user_03"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "Email change confirmed"
+        ]
+      },
+      {
+        "resource_id": "audit_record_005",
+        "record_kind": "security_audit_record",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Valid",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [
+          "user_03"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "Login from new device"
+        ]
+      },
+      {
+        "resource_id": "audit_record_004",
+        "record_kind": "security_audit_record",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Valid",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [
+          "user_03"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "Password changed"
+        ]
+      }
+    ]
+  }
+}

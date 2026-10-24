@@ -1,0 +1,60 @@
+{
+  "file_id": "evidence_19",
+  "method": "vision",
+  "model": "gemini-3.1-flash-lite",
+  "source": "evidence/images/analytics_profile_view_20260713.png",
+  "captured_at": "2026-07-13T10:00:00Z",
+  "screen": "Pulse Analytics",
+  "records": [
+    {
+      "resource_id": "analytics_7438",
+      "system_id": "analytics_platform",
+      "collection": "analytics_profile",
+      "observed_at": "2026-07-13T10:00:00Z",
+      "present": true,
+      "status_text": "Last 90 days",
+      "full_name": "Omar Darwish",
+      "email": "darwish.omar@icloud.com",
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": "user_20",
+      "other_references": [
+        "AE",
+        "Returning shopper",
+        "Coffee & dining",
+        "13 Jul 2026 14:22 UTC",
+        "21 Apr 2026 09:14 UTC"
+      ]
+    }
+  ],
+  "raw": {
+    "screen": "Pulse Analytics",
+    "records": [
+      {
+        "resource_id": "analytics_7438",
+        "record_kind": "analytics_profile",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Last 90 days",
+        "names": [
+          "Omar Darwish"
+        ],
+        "emails": [
+          "darwish.omar@icloud.com"
+        ],
+        "phones": [],
+        "user_ids": [
+          "user_20"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "AE",
+          "Returning shopper",
+          "Coffee & dining",
+          "13 Jul 2026 14:22 UTC",
+          "21 Apr 2026 09:14 UTC"
+        ]
+      }
+    ]
+  }
+}

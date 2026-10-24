@@ -1,0 +1,87 @@
+{
+  "file_id": "evidence_04",
+  "method": "vision",
+  "model": "gemini-3.1-flash-lite",
+  "source": "evidence/images/account_admin_console_20260926.png",
+  "captured_at": "2026-09-26T11:00:00Z",
+  "screen": "customer_operations_customer_profile",
+  "records": [
+    {
+      "resource_id": "account_5762",
+      "system_id": "account_service",
+      "collection": "customer_profile",
+      "observed_at": "2026-09-26T11:00:00Z",
+      "present": true,
+      "status_text": "Silver",
+      "full_name": "Haruka Sato",
+      "email": "haruka.s1838@zoho.com",
+      "phone": "+81 90 7610 2507",
+      "email_hash": null,
+      "customer_reference": "user_11",
+      "other_references": [
+        "2-18-4 Kichijoji, Musashino, Tokyo 180-0004",
+        "12 Jan 2024"
+      ]
+    },
+    {
+      "resource_id": "support_9538",
+      "system_id": "support_platform",
+      "collection": "support_conversations",
+      "observed_at": "2026-09-26T11:00:00Z",
+      "present": true,
+      "status_text": "Active",
+      "full_name": null,
+      "email": null,
+      "phone": null,
+      "email_hash": null,
+      "customer_reference": null,
+      "other_references": [
+        "CS-8538"
+      ]
+    }
+  ],
+  "raw": {
+    "screen": "customer_operations_customer_profile",
+    "records": [
+      {
+        "resource_id": "account_5762",
+        "record_kind": "customer_profile",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Silver",
+        "names": [
+          "Haruka Sato"
+        ],
+        "emails": [
+          "haruka.s1838@zoho.com"
+        ],
+        "phones": [
+          "+81 90 7610 2507"
+        ],
+        "user_ids": [
+          "user_11"
+        ],
+        "email_hashes": [],
+        "other_references": [
+          "2-18-4 Kichijoji, Musashino, Tokyo 180-0004",
+          "12 Jan 2024"
+        ]
+      },
+      {
+        "resource_id": "support_9538",
+        "record_kind": "support_message",
+        "present": true,
+        "flow_or_restore": "not_applicable",
+        "status_text": "Active",
+        "names": [],
+        "emails": [],
+        "phones": [],
+        "user_ids": [],
+        "email_hashes": [],
+        "other_references": [
+          "CS-8538"
+        ]
+      }
+    ]
+  }
+}

@@ -32,7 +32,7 @@ const DATASET = path.join(ROOT, 'dataset');
 const CACHE = path.join(__dirname, '..', 'cache', 'extracted');
 const USAGE = path.join(__dirname, '..', 'cache', 'usage.jsonl');
 
-const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const MODEL = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
 
 const RESOURCE_RE = /\b(account|search|analytics|support|export|data_flow|backup|audit_record|tombstone|legal_hold|marketing|email_delivery|cache|telemetry|object)_\d+\b/g;
 const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;

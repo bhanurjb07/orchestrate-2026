@@ -179,3 +179,12 @@ node code/evaluation/usage.js                       # -> code/evaluation/usage_r
 - **Status:** PDFs are done. Images are **not run**; the user will run `npm run extract` with their own key.
 
 Sample score with PDF facts: **status 100%**, step P/R/F1 **100% / 92.7% / 96.2%**, field 92.7%, sequence 62.5%. Full run: 518 rows (161 COMPLETE / 347 INCOMPLETE / 10 NOT_APPLICABLE). Eval cases 45, 61 and 63 still need the image facts.
+
+## 13. Image facts, multi-request subjects, custom cases (final round)
+
+- **Image extraction was run by the user** with `gemini-3.1-flash-lite`: 11 calls, 19,040 tokens, $0.0122 (see `usage_report.md`). I added that model's price; an unpriced model is now an error. Spot checks against evidence_37/46/60 matched the screenshots.
+- **Label → id mapping** (`normalizeVision`, re-runnable with `--renormalize`, no API calls): screens show `user_17` or `delivery_confirmation_19.pdf`, and these map through catalog labels to `tombstone_17` / `object_19`. Order and ticket labels stay `unlinked`. Eval cases 45/61/63 now have evidence-backed steps.
+- **Multi-request subjects** (users 07, 17, 18 each have two requests): a resource seen only up to an earlier request's `audit_at` belongs to that request; one first seen after this `audit_at` belongs to the later request. This fixed the extra `object_19` (case_07) and `tombstone_17` (case_17) from the February/March screenshots.
+- **Custom cases** (`code/evaluation/custom_cases.json`, `npm run custom`): 6 replays of samples with one change each. A `replay_of` column keeps them from competing with the original in workflow windows.
+- **custom_05 caught a safety bug:** unclear request text defaulted to "deletion". It now defaults to NOT_APPLICABLE, and access/copy negations plus German deletion vocabulary were added.
+- Final: samples status 100%, step P/R/F1 100/92.7/96.2%; custom status 100%, step F1 96.7%; 518 rows (153 COMPLETE / 355 INCOMPLETE / 10 NOT_APPLICABLE), 0 contract errors. A fresh copy of the packaged files plus the dataset reproduces `output.csv` byte for byte.

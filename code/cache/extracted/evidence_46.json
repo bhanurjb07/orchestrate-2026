@@ -7,12 +7,13 @@
   "screen": "Nimbus Object Storage",
   "records": [
     {
-      "resource_id": "delivery_confirmation_19.pdf",
-      "system_id": null,
+      "resource_id": "object_19",
+      "system_id": "object_storage",
       "collection": "ticket_attachments",
       "observed_at": "2026-02-13T08:00:00Z",
       "present": true,
       "status_text": "Standard",
+      "shown_as": "delivery_confirmation_19.pdf",
       "full_name": null,
       "email": null,
       "phone": null,
@@ -22,132 +23,6 @@
         "684 KB",
         "12 Feb 18:42",
         "v3"
-      ]
-    },
-    {
-      "resource_id": "delivery_confirmation_20.pdf",
-      "system_id": null,
-      "collection": "ticket_attachments",
-      "observed_at": "2026-02-13T08:00:00Z",
-      "present": true,
-      "status_text": "Standard",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "712 KB",
-        "11 Feb 14:17",
-        "v1"
-      ]
-    },
-    {
-      "resource_id": "return_label_4821.pdf",
-      "system_id": null,
-      "collection": "ticket_attachments",
-      "observed_at": "2026-02-13T08:00:00Z",
-      "present": true,
-      "status_text": "Standard",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "203 KB",
-        "10 Feb 09:33",
-        "v1"
-      ]
-    },
-    {
-      "resource_id": "return_label_4876.pdf",
-      "system_id": null,
-      "collection": "ticket_attachments",
-      "observed_at": "2026-02-13T08:00:00Z",
-      "present": true,
-      "status_text": "Standard",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "198 KB",
-        "11 Feb 16:05",
-        "v2"
-      ]
-    },
-    {
-      "resource_id": "invoice_NS-10493.pdf",
-      "system_id": null,
-      "collection": "ticket_attachments",
-      "observed_at": "2026-02-13T08:00:00Z",
-      "present": true,
-      "status_text": "Standard",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "318 KB",
-        "10 Feb 11:21",
-        "v1"
-      ]
-    },
-    {
-      "resource_id": "parcel_damage_7713.jpg",
-      "system_id": null,
-      "collection": "ticket_attachments",
-      "observed_at": "2026-02-13T08:00:00Z",
-      "present": true,
-      "status_text": "Standard",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "2.4 MB",
-        "12 Feb 10:08",
-        "v1"
-      ]
-    },
-    {
-      "resource_id": "customer_export_2026-02-10.zip",
-      "system_id": null,
-      "collection": "export_file",
-      "observed_at": "2026-02-13T08:00:00Z",
-      "present": true,
-      "status_text": "Standard",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "128 MB",
-        "10 Feb 23:14",
-        "v1"
-      ]
-    },
-    {
-      "resource_id": "customer_export_2026-02-12.zip",
-      "system_id": null,
-      "collection": "export_file",
-      "observed_at": "2026-02-13T08:00:00Z",
-      "present": true,
-      "status_text": "Standard",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "131 MB",
-        "12 Feb 21:56",
-        "v1"
       ]
     }
   ],
@@ -291,5 +166,126 @@
         ]
       }
     ]
-  }
+  },
+  "unlinked": [
+    {
+      "resource_id": "delivery_confirmation_20.pdf",
+      "record_kind": "stored_file",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Standard",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "712 KB",
+        "11 Feb 14:17",
+        "v1"
+      ]
+    },
+    {
+      "resource_id": "return_label_4821.pdf",
+      "record_kind": "stored_file",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Standard",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "203 KB",
+        "10 Feb 09:33",
+        "v1"
+      ]
+    },
+    {
+      "resource_id": "return_label_4876.pdf",
+      "record_kind": "stored_file",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Standard",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "198 KB",
+        "11 Feb 16:05",
+        "v2"
+      ]
+    },
+    {
+      "resource_id": "invoice_NS-10493.pdf",
+      "record_kind": "stored_file",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Standard",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "318 KB",
+        "10 Feb 11:21",
+        "v1"
+      ]
+    },
+    {
+      "resource_id": "parcel_damage_7713.jpg",
+      "record_kind": "stored_file",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Standard",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "2.4 MB",
+        "12 Feb 10:08",
+        "v1"
+      ]
+    },
+    {
+      "resource_id": "customer_export_2026-02-10.zip",
+      "record_kind": "export_file",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Standard",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "128 MB",
+        "10 Feb 23:14",
+        "v1"
+      ]
+    },
+    {
+      "resource_id": "customer_export_2026-02-12.zip",
+      "record_kind": "export_file",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Standard",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "131 MB",
+        "12 Feb 21:56",
+        "v1"
+      ]
+    }
+  ]
 }

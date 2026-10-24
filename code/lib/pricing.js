@@ -6,14 +6,17 @@ const MODEL_PRICES = {
   'gemini-2.5-flash-lite': { input: 0.10, output: 0.40, cache_read: 0.01, cache_write: 0 },
   'gemini-2.5-pro': { input: 1.25, output: 10.00, cache_read: 0.125, cache_write: 0 },   // prompts <= 200k tokens
   'gemini-3-flash-preview': { input: 0.50, output: 3.00, cache_read: 0.05, cache_write: 0 },
+  'gemini-3.1-flash-lite': { input: 0.25, output: 1.50, cache_read: 0.025, cache_write: 0 },
 };
 MODEL_PRICES.default = MODEL_PRICES['gemini-2.5-flash'];
 
 // The API may report a versioned name (e.g. "gemini-2.5-flash-001"); match on the base id.
+// An unknown model is an error rather than a silent guess, so the report never shows a wrong cost.
 function priceFor(model) {
   const key = Object.keys(MODEL_PRICES).filter(k => k !== 'default' && String(model).startsWith(k))
     .sort((a, b) => b.length - a.length)[0];
-  return MODEL_PRICES[key] || MODEL_PRICES.default;
+  if (!key) throw new Error(`no price for model "${model}": add it to code/lib/pricing.js`);
+  return MODEL_PRICES[key];
 }
 
 module.exports = { MODEL_PRICES, priceFor };

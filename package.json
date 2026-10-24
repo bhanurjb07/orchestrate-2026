@@ -10,6 +10,7 @@
     "start": "node --no-warnings code/main.js",
     "samples": "node --no-warnings code/main.js --input dataset/sample_deletion_requests.csv --output sample_pred.csv",
     "score": "node code/evaluation/main.js --pred sample_pred.csv",
+    "custom": "node code/evaluation/custom.js",
     "extract": "node --no-warnings code/extract/run.js",
     "usage": "node code/evaluation/usage.js"
   },

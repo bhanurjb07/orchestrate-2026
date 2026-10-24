@@ -17,6 +17,7 @@ Usage:
   node code/extract/run.js            # extract whatever is missing
   node code/extract/run.js --pdf-only # PDFs only, no API calls
   node code/extract/run.js --force    # re-extract everything (spends tokens again for images)
+  node code/extract/run.js --renormalize  # rebuild image records from cached model output (no API)
 */
 const fs = require('fs');
 const path = require('path');
@@ -170,25 +171,44 @@ async function imageFacts(meta, ai) {
   fs.appendFileSync(USAGE, JSON.stringify(usage) + '\n');
   if (finish !== 'STOP') throw new Error(`${meta.file_id}: generation ended with ${finish}`);
   const parsed = JSON.parse(response.text);
+  return { file_id: meta.file_id, method: 'vision', model: usage.model, source: meta.file_path, captured_at: meta.captured_at, screen: parsed.screen, raw: parsed };
+}
 
+// Turn the model's transcription into pipeline records. Screens often show a label rather than an
+// internal id (a customer key "user_17", a file name); those are mapped through the data catalog's
+// "resource (label)" rows. Anything that is still not a resource id is kept as context only.
+function normalizeVision(facts, catalog) {
   const STATE = { enabled: { enabled: true }, disabled: { enabled: false }, restorable: { restore_allowed: true }, blocked: { restore_allowed: false } };
   const COLLECTION = { support_attachment: 'ticket_attachments', stored_file: 'ticket_attachments', support_message: 'support_conversations', marketing_profile: 'marketing_profiles', account_tombstone: 'deleted_customer_references' };
-  const records = parsed.records.filter(r => r.resource_id).map(r => ({
-    resource_id: r.resource_id,
-    system_id: systemFor(r.resource_id),
-    collection: COLLECTION[r.record_kind] || r.record_kind,
-    observed_at: meta.captured_at,
-    present: r.present,
-    status_text: r.status_text,
-    full_name: r.names[0] || null,
-    email: r.emails[0] || null,
-    phone: r.phones[0] || null,
-    email_hash: r.email_hashes[0] || null,
-    customer_reference: r.user_ids[0] || null,
-    other_references: r.other_references,
-    ...(STATE[r.flow_or_restore] || {}),
-  }));
-  return { file_id: meta.file_id, method: 'vision', model: usage.model, source: meta.file_path, captured_at: meta.captured_at, screen: parsed.screen, records, raw: parsed };
+  const byLabel = new Map();
+  for (const a of catalog) {
+    const label = (/\(([^)]+)\)/.exec(a.details) || [])[1];
+    if (label && label !== a.resource_id) byLabel.set(label, a.resource_id);
+  }
+  const isId = s => new RegExp(`^${RESOURCE_RE.source}$`).test(s);
+  const records = [], unlinked = [];
+  for (const r of facts.raw.records) {
+    let rid = r.resource_id;
+    if (!isId(rid)) rid = [rid, ...r.other_references].map(x => byLabel.get(x)).find(Boolean) || null;
+    if (!rid) { unlinked.push(r); continue; }
+    records.push({
+      resource_id: rid,
+      system_id: systemFor(rid),
+      collection: COLLECTION[r.record_kind] || r.record_kind,
+      observed_at: facts.captured_at,
+      present: r.present,
+      status_text: r.status_text,
+      shown_as: rid === r.resource_id ? undefined : r.resource_id,
+      full_name: r.names[0] || null,
+      email: r.emails[0] || null,
+      phone: r.phones[0] || null,
+      email_hash: r.email_hashes[0] || null,
+      customer_reference: r.user_ids[0] || null,
+      other_references: r.other_references,
+      ...(STATE[r.flow_or_restore] || {}),
+    });
+  }
+  return { ...facts, records, unlinked };
 }
 
 async function main() {
@@ -202,7 +222,17 @@ async function main() {
     const ext = path.extname(meta.file_path).toLowerCase();
     if (ext !== '.pdf' && ext !== '.png') continue;
     const out = path.join(CACHE, `${meta.file_id}.json`);
-    if (fs.existsSync(out) && !args.has('--force')) { summary.cached++; continue; }
+    if (fs.existsSync(out) && !args.has('--force')) {
+      // Re-derive records from the cached model output (no API call) so mapping fixes apply.
+      const cached = JSON.parse(fs.readFileSync(out, 'utf8'));
+      if (cached.method === 'vision' && args.has('--renormalize')) {
+        const facts = normalizeVision(cached, catalog);
+        fs.writeFileSync(out, JSON.stringify(facts, null, 2) + '\n', 'utf8');
+        console.error(`${meta.file_id}: renormalized, ${facts.records.length} record(s) -> ${facts.records.map(r => r.resource_id).join(', ') || 'none'}; ${facts.unlinked.length} unlinked`);
+      }
+      summary.cached++;
+      continue;
+    }
     let facts;
     if (ext === '.pdf') {
       facts = pdfFacts(meta, await pdfLines(path.join(DATASET, meta.file_path)), catalog);
@@ -214,7 +244,7 @@ async function main() {
         const { GoogleGenAI } = require('@google/genai');
         client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       }
-      facts = await imageFacts(meta, client);
+      facts = normalizeVision(await imageFacts(meta, client), catalog);
       summary.image++;
     }
     fs.writeFileSync(out, JSON.stringify(facts, null, 2) + '\n', 'utf8');

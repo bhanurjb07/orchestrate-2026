@@ -121,5 +121,43 @@
         ]
       }
     ]
-  }
+  },
+  "unlinked": [
+    {
+      "resource_id": "",
+      "record_kind": "data_flow",
+      "present": true,
+      "flow_or_restore": "enabled",
+      "status_text": "",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "Order notifications",
+        "notification_service",
+        "order events",
+        "Continuous"
+      ]
+    },
+    {
+      "resource_id": "",
+      "record_kind": "data_flow",
+      "present": true,
+      "flow_or_restore": "enabled",
+      "status_text": "",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "Delivery tracking",
+        "logistics_warehouse",
+        "shipment events",
+        "Continuous"
+      ]
+    }
+  ]
 }

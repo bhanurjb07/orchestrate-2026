@@ -1,6 +1,6 @@
 'use strict';
-// Does the request text authorize deletion? Rules first; anything they cannot decide is "unclear"
-// and may be sent to an LLM by the caller.
+// Does the request text authorize deletion? Negations are checked first, then deletion phrasing.
+// Anything the rules cannot decide is "unclear"; the caller must not treat it as a deletion.
 
 const NEGATIVE = [
   /\bnot\s+(asking|requesting|a request)\s+(for|to)\s+(deletion|delet|eras)/i,
@@ -12,6 +12,8 @@ const NEGATIVE = [
   /\bcontinue\s+using\s+the\s+service/i,
   /\binformation\s+request\b/i,
   /\bstill\s+(need|use|want)\s+(the|my|it)\b/i,
+  /\b(send|give|provide)\s+me\s+(a\s+)?copy\b/i,
+  /\bkeep\s+using\s+(my|the|this)\s+account\b/i,
 ];
 
 const POSITIVE = [
@@ -19,11 +21,11 @@ const POSITIVE = [
   /\bclose\s+(my|this|the)\s+account/i,
   /\bclosed?\s+my\s+account/i,
   /\b(profile|account)\s+is\s+gone\b|\bcannot\s+identify\s+me\b/i,
-  /suppression|eliminaci[oó]n|exclus[aã]o|l[oö]schung|cancellazione/i,
+  /suppression|eliminaci[oó]n|exclus[aã]o|l[oö]sch|cancellazione/i,
   /삭제|削除|删除|注销/,
 ];
 
-const SUBJECT = /\b(account|profile|personal|data|record|identity|export|search result|archive)\b|compte|cuenta|conta|계정|アカウント|账户/i;
+const SUBJECT = /\b(account|profile|personal|data|record|identity|export|search result|archive)\b|compte|cuenta|conta|konto|daten|계정|アカウント|账户/i;
 
 function classifyRequest(text) {
   const t = String(text || '');

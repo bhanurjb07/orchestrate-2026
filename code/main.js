@@ -48,7 +48,16 @@ function main() {
   for (const f of ['deletion_requests.csv', 'sample_deletion_requests.csv']) {
     for (const r of readCsv(path.join(DATASET, f)).rows) known.set(`${r.case_id}|${r.email}`, r);
   }
-  const allRequests = requests.map(r => known.get(`${r.case_id}|${r.email}`) || r);
+  // A row with replay_of (custom test cases) is a variant of a known request: it shares that
+  // request's workflow identity and does not join the pool as an extra competitor.
+  const byCase = new Map([...known.values()].map(r => [r.case_id, r]));
+  for (const r of requests) {
+    if (!r.replay_of) continue;
+    const orig = byCase.get(r.replay_of);
+    if (!orig) throw new Error(`${r.case_id}: replay_of ${r.replay_of} is not a known request`);
+    r._key = `${orig.case_id}|${orig.email}`;
+  }
+  const allRequests = requests.filter(r => !r.replay_of).map(r => known.get(`${r.case_id}|${r.email}`) || r);
   for (const r of known.values()) if (!allRequests.includes(r)) allRequests.push(r);
   const deletionRequests = allRequests.filter(r => classifyRequest(r.request_text).decision !== 'NOT_DELETION');
   const linker = new Linker(observations.concat(activityObservations(tables.activity)), tables.activity, identity, deletionRequests);
@@ -58,10 +67,11 @@ function main() {
   for (const req of requests) {
     const cls = classifyRequest(req.request_text);
     let status, steps, trace;
-    if (cls.decision === 'NOT_DELETION') {
+    // Only a clear deletion request authorizes an audit; unclear text is never treated as one.
+    if (cls.decision !== 'DELETION') {
+      if (cls.decision === 'UNCLEAR') console.error(`warn: ${req.case_id} request text unclear, treated as NOT_APPLICABLE`);
       status = 'NOT_APPLICABLE'; steps = []; trace = { classification: cls };
     } else {
-      if (cls.decision === 'UNCLEAR') console.error(`warn: ${req.case_id} request text unclear, treated as deletion`);
       ({ status, steps, trace } = auditCase(req, ctx));
     }
     const errs = validate(status, steps);

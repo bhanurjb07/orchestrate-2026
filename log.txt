@@ -175,3 +175,25 @@ branch=main
 repo_root=D:\orchestrate-2026
 worktree=main
 parent_agent=none
+
+## [2026-10-25T04:27:58+05:30] Evaluation report with custom cases; README setup and run steps
+
+User Prompt (verbatim, secrets redacted):
+write code/evaluation/evaluation_report.md with the sample metrics, at least 3 custom test cases you build and run, and the failures found and improvements made.then update README.md with full setup and run steps for Node, .env and npm scripts.
+
+Agent Response Summary:
+Found that the user had run the Gemini image extraction (gemini-3.1-flash-lite). Added its price, then mapped screen labels to resource ids through catalog labels using the cached model output, with no new API calls. Added a rule that assigns resources to the right request when a subject filed several requests; this restored 100% sample precision. Built 6 custom cases (replays of samples with one change, hand-derived expectations) and a runner (npm run custom). They exposed a safety bug: unclear request text defaulted to deletion. Fixed it by defaulting unclear text to NOT_APPLICABLE and adding classifier patterns. Wrote evaluation_report.md (sample metrics, custom results, 12 failures/improvements, progression table) and rewrote README.md (Node, npm ci, .env, scripts, architecture, packaging). Recreated a missing .env.example with placeholders only. Verified that a fresh copy reproduces output.csv byte for byte.
+
+Actions:
+* Edited code/extract/run.js (normalizeVision, --renormalize), code/lib/pricing.js, code/lib/audit.js (multi-request rule, replay keys), code/lib/classify.js, code/main.js (replay_of, unclear -> NOT_APPLICABLE), package.json (custom script)
+* Created code/evaluation/custom_cases.json, code/evaluation/custom.js, code/evaluation/evaluation_report.md, .env.example
+* Rewrote README.md; appended code/NOTES.md section 13
+* Ran extract --renormalize (no API), samples + score, custom, full run (output.csv), usage report, fresh-copy reproduction check, secret scan (.env not read)
+
+Context:
+tool=Claude Code
+model=claude-opus-5-5
+branch=main
+repo_root=D:\orchestrate-2026
+worktree=main
+parent_agent=none

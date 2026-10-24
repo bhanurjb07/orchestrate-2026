@@ -1,0 +1,71 @@
+{
+  "description": "Custom evaluation cases. Each replays a public sample request with one input changed. Expected answers are derived by hand from the sample gold answer and the evidence (not from pipeline output). 'steps' entries are [operation, system_id, resource_id, evidence_id]; step_no, phase and state follow from the operation, and the order is canonical.",
+  "cases": [
+    {
+      "case_id": "custom_01",
+      "replay_of": "case_27",
+      "change": { "audit_at": "2026-09-18T12:00:00Z" },
+      "tests": "Time cutoff, other side: the same subject audited after the account reappeared.",
+      "why": "Gold case_27 is COMPLETE at 09-15. The 2026-09-17 bundle (evidence_02, captured 09-17T12:00) has an inner snapshot taken 09-17T12:00 that shows account_3866 ACTIVE again for user_27. Audited at 09-18, that copy is citable, so the account is a remaining record. The other resources keep their gold treatment as future checks.",
+      "expected_status": "INCOMPLETE",
+      "steps": [
+        ["REPORT_REMAINING_RECORD", "account_service", "account_3866", "evidence_02"],
+        ["DELETE_RECORD", "account_service", "account_3866", ""],
+        ["VERIFY_RECORD_ABSENT", "account_service", "account_3866", ""],
+        ["VERIFY_RECORD_PRESENT", "security_service", "audit_record_3830", ""],
+        ["VERIFY_RECORD_REDACTED", "support_platform", "support_4707", ""],
+        ["VERIFY_RECORD_ANONYMIZED", "analytics_platform", "analytics_4574", ""],
+        ["VERIFY_DATA_FLOW_DISABLED", "integration_service", "data_flow_2295", ""],
+        ["VERIFY_RESTORE_BLOCKED", "backup_service", "backup_5970", ""]
+      ]
+    },
+    {
+      "case_id": "custom_02",
+      "replay_of": "case_29",
+      "change": { "email": "noah.f4380@outlook.com" },
+      "tests": "Identity resolution from the subject's current email when the sample used the historical one.",
+      "why": "audit_284 changed user_29's email from noah.f438085@outlook.com to noah.f4380@outlook.com. Either address resolves to user_29, so the answer must equal gold case_29.",
+      "expected_from_gold": "case_29"
+    },
+    {
+      "case_id": "custom_03",
+      "replay_of": "case_05",
+      "change": { "email": "LEILA.HADDAD@YAHOO.COM" },
+      "tests": "Email normalisation (case-insensitive match).",
+      "why": "Email addresses match case-insensitively, so the answer must equal gold case_05.",
+      "expected_from_gold": "case_05"
+    },
+    {
+      "case_id": "custom_04",
+      "replay_of": "case_01",
+      "change": { "request_text": "Bitte löschen Sie mein Konto und alle damit verbundenen personenbezogenen Daten endgültig." },
+      "tests": "Request classification in a language that no sample or eval request uses (German).",
+      "why": "This is an unambiguous deletion request, so the answer must equal gold case_01.",
+      "expected_from_gold": "case_01"
+    },
+    {
+      "case_id": "custom_05",
+      "replay_of": "case_24",
+      "change": { "request_text": "Please send me a copy of all the personal data you hold about me. I want to keep using my account." },
+      "tests": "A non-deletion request for a subject whose data is really still present.",
+      "why": "An access request authorizes no deletion, so the answer is NOT_APPLICABLE with [] even though case_24's evidence shows a live account and search entry.",
+      "expected_status": "NOT_APPLICABLE",
+      "steps": []
+    },
+    {
+      "case_id": "custom_06",
+      "replay_of": "case_09",
+      "change": { "audit_at": "2026-09-07T10:00:00Z" },
+      "tests": "Early cutoff: only activity evidence exists yet, and later files must not be cited.",
+      "why": "At 09-07T10:00 the inventory snapshot that gold case_09 cites (evidence_93, 09-16) does not exist yet. The only citable proof of the restore risk is activity_3709 (09-07T09:51, CHECK_RESTORE_ACCESS: backup_4978 can still be restored). The account and audit record remain future checks as in gold.",
+      "expected_status": "INCOMPLETE",
+      "steps": [
+        ["REPORT_RESTORE_RISK", "backup_service", "backup_4978", "activity_3709"],
+        ["BLOCK_RESTORE", "backup_service", "backup_4978", ""],
+        ["VERIFY_RECORD_ABSENT", "account_service", "account_3960", ""],
+        ["VERIFY_RECORD_PRESENT", "security_service", "audit_record_4902", ""],
+        ["VERIFY_RESTORE_BLOCKED", "backup_service", "backup_4978", ""]
+      ]
+    }
+  ]
+}

@@ -12,6 +12,9 @@ const { systemFor } = require('./loaders');
 const RESOURCE_RE = /\b(account|search|analytics|support|export|data_flow|backup|audit_record|tombstone|legal_hold|marketing|email_delivery|cache|telemetry)_\d+\b/g;
 const NULLISH = v => v == null || v === '' || v === 'null' || v === '[REDACTED]';
 const ms = t => Date.parse(t);
+// Identity of a request in the workflow pool; a replayed variant (custom test case) carries the
+// key of the request it replays.
+const reqKey = r => r._key || `${r.case_id}|${r.email}`;
 
 // ---------------------------------------------------------------- categories
 // Rule category for a resource, judged from what its observations describe.
@@ -206,7 +209,7 @@ class Linker {
   // Resources the deletion workflow touched for this request and that nothing ties to anyone else.
   workflowLinks(req, userId) {
     const out = [];
-    const isReq = r => r.case_id === req.case_id && r.email === req.email;
+    const isReq = r => reqKey(r) === reqKey(req);
     for (const a of this.workerActions) {
       const inWin = this.requestsInWindow(a);
       if (!inWin.some(isReq)) continue;
@@ -334,6 +337,22 @@ function auditCase(req, ctx) {
   const userId = ctx.identity.resolveEmail(req.email, req.requested_at);
   if (!userId) return { status: 'COMPLETE', steps: [], trace: { userId: null } };
   const { linked, workflowAccount } = ctx.linker.link(userId, req);
+  // A subject can file more than one request. A resource seen only up to an earlier request's
+  // audit belongs to that earlier request; one first seen after this audit, when a later request
+  // exists, belongs to the later one.
+  const siblings = ctx.linker.requests.filter(r => reqKey(r) !== reqKey(req) &&
+    ctx.identity.resolveEmail(r.email, r.requested_at) === userId);
+  const earlierAudit = siblings.filter(r => r.audit_at < req.requested_at).reduce((m, r) => (r.audit_at > m ? r.audit_at : m), '');
+  const hasLater = siblings.some(r => r.requested_at > req.audit_at);
+  if (earlierAudit || hasLater) {
+    for (const rid of [...linked.keys()]) {
+      const times = (ctx.linker.byResource.get(rid) || []).map(o => o.ts)
+        .concat(ctx.linker.catalog.filter(a => a.resource_id === rid).map(a => a.event_time));
+      if (!times.length) continue;
+      if (earlierAudit && times.every(t => ms(t) <= ms(earlierAudit))) linked.delete(rid);
+      else if (hasLater && times.every(t => ms(t) > ms(req.audit_at))) linked.delete(rid);
+    }
+  }
   const states = new Map();
   for (const rid of linked.keys()) states.set(rid, stateAt(rid, ctx.linker, req.audit_at));
   // One account per request: when the workflow names it, other accounts that are already gone

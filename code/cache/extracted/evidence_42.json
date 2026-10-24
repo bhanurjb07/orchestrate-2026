@@ -7,12 +7,13 @@
   "screen": "Customer Reference Registry",
   "records": [
     {
-      "resource_id": "user_17",
-      "system_id": null,
+      "resource_id": "tombstone_17",
+      "system_id": "identity_service",
       "collection": "customer_profile",
       "observed_at": "2026-03-10T06:00:00Z",
       "present": true,
       "status_text": "Retained reference",
+      "shown_as": "user_17",
       "full_name": null,
       "email": null,
       "phone": null,
@@ -23,70 +24,6 @@
         "10 Mar 2026 07:18 UTC",
         "Account Platform",
         "eu-west"
-      ]
-    },
-    {
-      "resource_id": "ORD-20263245",
-      "system_id": null,
-      "collection": "other",
-      "observed_at": "2026-03-10T06:00:00Z",
-      "present": true,
-      "status_text": "Active",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "11 Jan 2024 08:45"
-      ]
-    },
-    {
-      "resource_id": "CS-3245",
-      "system_id": null,
-      "collection": "support_conversations",
-      "observed_at": "2026-03-10T06:00:00Z",
-      "present": true,
-      "status_text": "Active",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "14 Feb 2024 12:16"
-      ]
-    },
-    {
-      "resource_id": "CS-3378",
-      "system_id": null,
-      "collection": "support_conversations",
-      "observed_at": "2026-03-10T06:00:00Z",
-      "present": true,
-      "status_text": "Active",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "03 Jun 2024 09:27"
-      ]
-    },
-    {
-      "resource_id": "FIN-7742",
-      "system_id": null,
-      "collection": "other",
-      "observed_at": "2026-03-10T06:00:00Z",
-      "present": true,
-      "status_text": "Active",
-      "full_name": null,
-      "email": null,
-      "phone": null,
-      "email_hash": null,
-      "customer_reference": null,
-      "other_references": [
-        "22 Aug 2024 15:03"
       ]
     }
   ],
@@ -174,5 +111,67 @@
         ]
       }
     ]
-  }
+  },
+  "unlinked": [
+    {
+      "resource_id": "ORD-20263245",
+      "record_kind": "other",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Active",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "11 Jan 2024 08:45"
+      ]
+    },
+    {
+      "resource_id": "CS-3245",
+      "record_kind": "support_message",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Active",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "14 Feb 2024 12:16"
+      ]
+    },
+    {
+      "resource_id": "CS-3378",
+      "record_kind": "support_message",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Active",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "03 Jun 2024 09:27"
+      ]
+    },
+    {
+      "resource_id": "FIN-7742",
+      "record_kind": "other",
+      "present": true,
+      "flow_or_restore": "not_applicable",
+      "status_text": "Active",
+      "names": [],
+      "emails": [],
+      "phones": [],
+      "user_ids": [],
+      "email_hashes": [],
+      "other_references": [
+        "22 Aug 2024 15:03"
+      ]
+    }
+  ]
 }

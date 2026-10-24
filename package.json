@@ -1,0 +1,14 @@
+{
+  "name": "ghost-data-still-exists",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deletion-audit agent for the HackerRank Orchestrate challenge",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node --no-warnings code/main.js",
+    "samples": "node --no-warnings code/main.js --input dataset/sample_deletion_requests.csv --output sample_pred.csv",
+    "score": "node code/evaluation/main.js --pred sample_pred.csv"
+  }
+}
